@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {{msg}}
+    <form method="post" action="/add/">
+        {% csrf_token %}
+    <table>
+    {{data}}
+    </table>
+    <input type="submit" />
+    </form>
+    <table border="1px solid black">
+        <tr>
+            <th>name</th>
+            <th>section</th>
+            <th>contact</th>
+            <th>email</th>
+            <th>school</th>
+        </tr>
+        {% if table %}
+        {% for i in table %}
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.section}}</td>
+            <td>{{i.contact}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.school}}</td>
+            <td><a href="/edit/{{i.id}}" >Edit</a></td>
+            <td><a href="/delete/{{i.id}}" >Delete</a></td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+</body>
+</html>
